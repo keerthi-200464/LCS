@@ -1,0 +1,21 @@
+public class LCS {
+    public static int LCS(char[] x, char[] y, int m, int n) {
+        // Use '==' for comparisons, not '='
+        if (m == 0 || n == 0) {
+            return 0;
+        }
+        // Check characters at x[m-1] and y[n-1] (correct indexing)
+https://www.onlinegdb.com/online_java_compiler#editor_1        if (x[m - 1] == y[n - 1]) {
+            return 1 + LCS(x, y, m - 1, n - 1);
+        } else {
+            // Correct Math.max syntax: Math.max(a, b)
+            return Math.max(LCS(x, y, m - 1, n), LCS(x, y, m, n - 1));
+        }
+    }
+
+    public static void main(String[] args) {
+        String s1 = "ABCBDAB";
+        String s2 = "BDCAB";
+        System.out.println("LCS length (recursive): " + LCS(s1.toCharArray(), s2.toCharArray(), s1.length(), s2.length())); // Expected: 4
+    }
+}
